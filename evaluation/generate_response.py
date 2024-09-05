@@ -9,7 +9,8 @@ import sys
 sys.path.append('../')
 from utilities import *
 
-from models import claude, gpt, bard
+from models import hugging_face
+# from models import claude, gpt, bard, hugging_face
 
 from build_query import create_query_data
 
@@ -63,7 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_file', type=str, default='output_bard.json')
     # model
     parser.add_argument('--model', type=str, default='gpt-3.5-turbo', help='llm engine',
-                        choices = ['gpt-3.5-turbo', 'claude-2', 'gpt4', 'gpt-4-0613', 'bard'])
+                        choices = ['gpt-3.5-turbo', 'claude-2', 'gpt4', 'gpt-4-0613', 'bard', 'internlm'])
     parser.add_argument('--key', type=str, default='', help='key for llm api')
     # query
     parser.add_argument('--query_file', type=str, default=None)  
@@ -154,6 +155,9 @@ if __name__ == '__main__':
         else:
             key = args.key
         model = claude.Claude_Model(args.model, key)
+    elif "internlm" in args.model:
+        model = hugging_face.HF_Model(model="internlm/internlm-xcomposer2d5-7b")
+            
     
     print(f"Model loaded.")
     

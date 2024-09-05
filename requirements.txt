@@ -1,0 +1,15 @@
+decord
+distro
+openai
+opencv-python
+pandas
+pillow
+sympy
+tokenizers
+torch
+torchvision
+tqdm
+transformers
+word2number
+einops
+datasets
